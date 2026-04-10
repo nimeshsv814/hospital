@@ -29,13 +29,21 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "GitHub Actions Build Status"
-          to: nimeshsv814@gmail.com,k01thanusri@gmail.com,chandanaharish07@gmail.com
+          to: nimeshsv814@gmail.com,k01thanusri@gmail.com
           from: nimeshsv814@gmail.com
           body: |
             Build status: ${{ job.status }}
             Repository: ${{ github.repository }}
             Branch: ${{ github.ref }}
             Commit: ${{ github.sha }}
+
+      - name: Snyk Initialize Backend
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: monitor
+          args: --file=backend/package.json
       # If you wish to fail your job when the Quality Gate is red, uncomment the
       # following lines. This would typically be used to fail a deployment.
       # - uses: SonarSource/sonarqube-quality-gate-action@v1
