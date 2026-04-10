@@ -32,7 +32,7 @@ jobs:
           to: nimeshsv814@gmail.com
           from: nimeshsv814@gmail.com
           body: |
-            Build-Status: ${{ job.status }}
+            Build Status: ${{ job.status }}
             Repository: ${{ github.repository }}
             Branch: ${{ github.ref }}
             Commit: ${{ github.sha }}
